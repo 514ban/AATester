@@ -1,0 +1,81 @@
+@charset "UTF-8";
+* {
+  box-sizing:border-box;
+}
+:root {
+  color-scheme:light dark;
+}
+
+body {
+  margin:0;
+  padding:0;
+  width:100vw; height:100vh;
+
+  display:grid;
+  grid-template-columns:auto;
+  grid-template-rows:1.25em 1.75em auto 1.25em;
+  
+  > *:empty {
+    display:none;
+  }
+  > * {
+    padding:4px;
+  }
+  header,footer {
+    font-size:12px;line-height:1em;
+    max-height:calc(1.25em + 8px);
+    overflow:hidden;
+    background:rgba(200,200,200,0.3);
+  }
+  footer {
+    text-align:right;
+    a {
+      color:unset;
+    }
+  }
+
+  nav {
+    user-select:none;
+    background:rgba(128,128,128,0.7);
+    font-size:90%; line-height:1em;
+    ul {
+      margin:0; padding:0;
+      list-type:none;
+      li {
+	display:inline-block;
+	padding:0 0.25em;
+      }
+      span[name=openSettings] {
+	display:inline-block;
+	padding:2px 4px; border-radius:4px;
+	color:rgb(0,80,255); background:rgba(192,192,192,0.8);
+	cursor:pointer; }
+    }
+  }
+  main {
+    width:100%; height:auto;
+    overflow:auto;
+    section.exp {
+      font-size:9pt;
+    }
+  }
+  
+}
+
+input[type=radio],input[type=checkbox] {
+  display:none;
+  & + label[for] {
+    display:inline-block;
+    line-height:1em;
+    padding:2px 2px;
+    border:1px solid rgba(0,0,0,0.8);
+    border-radius:4px;
+    cursor:pointer;
+    color:rgb(0,0,0);
+    background:rgba(80,80,80,0.5);
+  }
+  &:checked + label {
+    background:rgba(128,0,0,0.5);
+  }
+}
+

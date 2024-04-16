@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="initial-scale=1.0"/>
+<title>簡易AAテスター</title>
+<script type="text/javascript" src="aatester.js"></script>
+<script type="text/javascript">
+ window.addEventListener('load',(e)=>{
+   if (window.innerHeight != document.body.getBoundingClientRect().height) {
+     document.body.style.height = String(window.innerHeight) + 'px';
+   }
+
+   // set from system theme
+   const seltheme = document.querySelector('#darktheme');
+   const setScheme = (e) => {
+     const tgt = e.target;
+     (function() {
+       for (const ss of document.styleSheets) {
+	 if (ss.title=='aatester') {
+	   for (const rule of ss.cssRules) {
+	     if (rule.selectorText==':root') {
+	       rule.style.colorScheme = tgt.checked ? 'dark' : 'light';
+	     }
+	   }	     
+	   return ss;
+	 }
+     }})();
+   };
+   seltheme.addEventListener('input',setScheme,false);
+   seltheme.checked = false;
+
+   const chkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+   if (chkMedia) seltheme.click();
+
+   new AATester();
+   // document.aa = new AATester();
+ });
+</script>
+<link rel="stylesheet" title="aatester" type="text/css" href="style.css"/>
+<link rel="stylesheet" title="aatester" type="text/css" href="aatester.css"/>
+<style type="text/css">
+</style>
+</head>
+<body>
+<header>簡易AAテスター</header>
+<nav><ul><li><span name="openSettings">表示設定</span></li><li><input type="checkbox" id="darktheme" /><label for="darktheme">画面dark</label></li></ul></nav>
+<main>
+<section class="aatester">
+<h1></h1>
+<article>
+<div class="aaviewer">
+表示部分。入力したら消えて更新されます。<br/>
+|　∧∧　 |　∧∧　 |　∧∧ _ | 〆⌒ ヽ |←<br/>
+|（　＾▽＾）|（　｀◇´）|（ σ_σ）|（　‘д‘）|←<br/>
+| （ つ|　 これがズレてませんか？　|0..|←<br/>
+（表示がMS Pゴシック・12pt基準例）
+</div>
+<form>
+<textarea class="aaedit" autofocus="yes" placeholder="（ここに入力）"></textarea>
+<br/>
+<input type="reset" value="消す"/>
+</form>
+<dialog id="tester_settings">
+<h1>表示設定</h1>
+<ul>
+<li><label>フォントサイズ：</label><input type="text" id="tester_fontsize"/></li>
+<li><label>フォント名：</label><input type="text" id="tester_fontfamily" list="fontlist" /></li>
+<li><label>行高：</label><input type="text" id="tester_lineheight"/></li>
+<li><label>文字色：</label><input type="text" id="tester_color"/></li>
+<li><label>背景色：</label><input type="text" id="tester_background"/></li>
+</ul>
+<small>（入力はCSSの書式に準じる）</small><br/>
+<button name="close">変更・閉じる</button>
+</dialog>
+</article>
+</section>
+<section class="exp">
+<p>
+入力欄に文字を入れたら、上部に表示されます。<br/>
+表示設定を押すと、文字種等指定できます。<br/>
+スタイルシートの書き換えをするだけなので、CSSの記述で指定してください。<br/>
+システムテーマに応じて、明暗自動切り替えですが、画面darkを押せば、手動で切り替わります。<br/>
+</p>
+<p style="font-size:8pt">
+たぶん、これが最終更新。ロード以外の通信はしないんで、aatester.cssと併せて保存すれば、ローカルでも動きます。旧版へのアクセスは全部こっちに飛びます。まるしー書いてはいるけど改変自由。
+</p>
+</section>
+</main>
+<footer>&copy;<a href="https://labo.koishikawachan.net">AA研</a></footer>
+<datalist id="fontlist">
+<option value='"ＭＳ Ｐゴシック"'></option>
+<option value='"ＭＳ Ｐ明朝"'></option>
+<option value="メイリオ"></option>
+<option value='"Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif'></option>
+</datalist>
+</body>
+</html>

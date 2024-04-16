@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+section.aatester {
+  width:100%; height:auto;
+  margin:0; padding:0.5em;
+  > *:empty { display:none; }
+  h1,h2,h3,p { margin:0; margin-bottom:0.5em; padding:0 0.25em; font-size:100%; line-height:1em; }
+  h1,h2,h3 { border-bottom:3px double rgb(0,0,128); font-size:90%; }
+  article {
+    width:100%; height:100%;
+    overflow:auto;
+  }
+  div.aaviewer {
+    font-size:12pt; font-family:"ＭＳ Ｐゴシック"; line-height:normal;
+    color:rgb(0,0,0); background:rgba(255,255,255,0.5);
+    /* 上５つは、表示設定から変更対象 */
+
+    width:95%; min-height:5em;
+    padding:4px;
+    border:2px solid rgba(0,0,0,0.5);
+    border-radius:4px;
+
+    span {
+      &.firstspc,&.dblspc {
+      }
+    }
+  }
+  textarea {
+    display:inline-block;
+    width:80%; height:10em;
+    margin-top:0.5em;
+    &::placeholder {
+      color:rgb(128,128,255);
+    }
+  }
+
+  /* setting dialog */
+  dialog#tester_settings {
+    user-select:none;
+    padding:0.5em;
+    border:2px solid rgba(0,0,0,0.8);
+    border-radius:12px;
+    color:rgb(0,0,0); background:rgb(128,128,128);
+    @media only screen and (prefers-color-scheme: dark) {
+      border-color:rgba(255,255,255,0.8);
+    }
+    ul {
+      margin:0; padding:0; list-style:none;
+      li {
+	display:flex;
+	font-size:90%;
+	flex-flow:row wrap;
+	* {
+	  flex:1 1 auto;
+	}
+	input[type=text] {
+	  user-select:unset;
+	}
+      }
+    }
+  }
+}
