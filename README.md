@@ -1,1 +1,1 @@
-AATester
+Ascii Art Tester script
