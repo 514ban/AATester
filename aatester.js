@@ -1,4 +1,4 @@
-const AATester = class {
+class AATester {
   tester = null
   dialog = null
   editor = null
